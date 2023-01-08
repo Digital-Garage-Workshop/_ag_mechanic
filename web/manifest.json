@@ -1,6 +1,6 @@
 {
-  "name": "Garage Mechanic",
-  "short_name": "Garage Mechanic",
+  "name": "garage_mechanic",
+  "short_name": "garage_mechanic",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

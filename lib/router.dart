@@ -1,4 +1,4 @@
-import 'package:Garage Mechanic/pages/job_page.dart';
+import 'package:garage_mechanic/pages/job_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'pages/home_page.dart';

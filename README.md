@@ -1,4 +1,4 @@
-# Garage Mechanic
+# garage_mechanic
 
 A new Flutter project.
 

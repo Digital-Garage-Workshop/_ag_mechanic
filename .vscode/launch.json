@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Garage Mechanic",
+      "name": "garage_mechanic",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "Garage Mechanic (profile mode)",
+      "name": "garage_mechanic (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "Garage Mechanic (release mode)",
+      "name": "garage_mechanic (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
