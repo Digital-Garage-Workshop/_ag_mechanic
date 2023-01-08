@@ -47,9 +47,6 @@ class CalendarPage extends ConsumerWidget {
             onDaySelected: (selectedDay, focusedDay) {
               ref.read(focusedDayProvider.notifier).state = focusedDay;
             },
-            onPageChanged: (focusedDay) {
-              ref.read(focusedDayProvider.notifier).state = focusedDay;
-            },
             onFormatChanged: (format) {
               ref.read(calendarFormatProvider.notifier).state = format;
             },
