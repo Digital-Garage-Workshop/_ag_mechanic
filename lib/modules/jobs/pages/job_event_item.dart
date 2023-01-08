@@ -19,26 +19,26 @@ class JobEventItem extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: data.status.color,
-          width: 2.0,
+          width: 1.5,
         ),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: ListTile(
         onTap: () => context.push('/jobs/${data.id}'),
-        leading: Text(
-          data.plateNumber,
-          style: TextStyle(color: data.status.color),
-        ),
-        trailing: Icon(
+        leading: Icon(
           data.status.icon,
           color: data.status.color,
         ),
+        trailing: Icon(
+          Icons.chevron_right,
+          color: data.status.color,
+        ),
         subtitle: Text(
-          '${data.startTime} - ${data.endTime}',
+          '${DateFormat('yyyy/MM/dd').format(data.date)} ${data.startTime} - ${data.endTime}',
           style: TextStyle(color: data.status.color),
         ),
         title: Text(
-          DateFormat('yyyy/MM/dd').format(data.date),
+          data.plateNumber,
           style: TextStyle(color: data.status.color),
         ),
       ),
