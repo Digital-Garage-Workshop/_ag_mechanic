@@ -1,13 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final options = BaseOptions(baseUrl: "https://reqres.in/api");
+final clientProvider = Provider<Dio>((_) {
+  final dio = Dio(options);
+  dio.interceptors.add(CustomInterceptors());
+
+  return dio;
+});
 
 class CustomInterceptors extends Interceptor {
-  final Dio _dio;
-
-  CustomInterceptors(this._dio);
-
   @override
-  void onRequest(options, handler) async {
+  onRequest(options, handler) async {
     try {
       const storage = FlutterSecureStorage();
       final accessToken = await storage.read(key: "accessToken");
@@ -23,7 +28,7 @@ class CustomInterceptors extends Interceptor {
   }
 
   @override
-  void onResponse(response, handler) async {
+  onResponse(response, handler) async {
     try {
       if (response.requestOptions.path == "/login" &&
           response.statusCode == 200) {
@@ -40,7 +45,7 @@ class CustomInterceptors extends Interceptor {
   }
 
   @override
-  void onError(error, handler) {
+  onError(error, handler) {
     return handler.next(error);
   }
 }

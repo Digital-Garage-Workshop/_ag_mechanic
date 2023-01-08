@@ -1,11 +1,12 @@
-import 'package:garage_mechanic/pages/job_page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'pages/home_page.dart';
-import 'pages/auth/login.dart';
+import 'modules/auth/pages/login.page.dart';
+import 'modules/jobs/pages/job_page.dart';
+import 'modules/others/pages/home_page.dart';
 
-// GoRouter configuration
-final router = GoRouter(
+GoRouter generateRouter(WidgetRef ref) {
+  return GoRouter(
     initialLocation: "/",
     routes: [
       GoRoute(
@@ -27,4 +28,6 @@ final router = GoRouter(
     ],
     redirect: (context, state) {
       return null;
-    });
+    },
+  );
+}

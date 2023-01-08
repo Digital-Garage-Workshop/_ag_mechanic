@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'calendar_page/index.dart';
-import 'notifications.dart';
-import 'settings_page.dart';
+import '/modules/jobs/index.dart';
+import './notifications.dart';
+import './settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,4 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'client.provider.dart';
+
+final authServiceProvider = Provider<AuthService>((ref) {
+  final client = ref.watch(clientProvider);
+
+  return AuthService(client);
+});
 
 class AuthService {
   final Dio _dio;

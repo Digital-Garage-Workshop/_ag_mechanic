@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '/models/event.dart';
-
 class EventMarker extends StatelessWidget {
   const EventMarker({
     super.key,
-    required this.data,
+    this.color = Colors.blue,
   });
 
-  final Event data;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class EventMarker extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 0.5),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: data.type.color,
+        color: color,
       ),
     );
   }
