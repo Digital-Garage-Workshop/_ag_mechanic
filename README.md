@@ -1,4 +1,4 @@
-# flutter3_test
+# Garage Mechanic
 
 A new Flutter project.
 
