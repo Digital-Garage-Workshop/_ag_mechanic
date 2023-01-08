@@ -10,19 +10,21 @@ class CustomCalendar extends StatelessWidget {
     this.firstDay,
     this.lastDay,
     required this.focusedDay,
-    // required this.selectedDay,
+    this.calendarFormat,
     this.eventLoader,
     this.onDaySelected,
     this.onPageChanged,
+    this.onFormatChanged,
   });
 
   final DateTime? firstDay;
   final DateTime? lastDay;
   final DateTime focusedDay;
-  // final DateTime selectedDay;
+  final CalendarFormat? calendarFormat;
   List<Event> Function(DateTime)? eventLoader;
   void Function(DateTime, DateTime)? onDaySelected;
   void Function(DateTime)? onPageChanged;
+  void Function(CalendarFormat)? onFormatChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class CustomCalendar extends StatelessWidget {
       focusedDay: focusedDay,
       selectedDayPredicate: (day) => focusedDay == day,
       pageJumpingEnabled: true,
-      calendarFormat: CalendarFormat.month,
+      calendarFormat: calendarFormat ?? CalendarFormat.month,
       calendarBuilders: CalendarBuilders(
         singleMarkerBuilder: (_, __, event) => EventMarker(data: event),
       ),
@@ -46,6 +48,7 @@ class CustomCalendar extends StatelessWidget {
       eventLoader: eventLoader,
       onDaySelected: onDaySelected,
       onPageChanged: onPageChanged,
+      onFormatChanged: onFormatChanged,
     );
   }
 }

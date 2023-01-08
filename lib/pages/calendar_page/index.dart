@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '/models/event.dart';
 import 'custom_calendar.dart';
@@ -17,6 +18,7 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
+  CalendarFormat _calendarFormat = CalendarFormat.month;
 
   @override
   void initState() {
@@ -43,6 +45,7 @@ class _CalendarPageState extends State<CalendarPage> {
             firstDay: DateTime(now.year, now.month - 3, now.day),
             lastDay: DateTime(now.year, now.month + 3, now.day),
             focusedDay: _focusedDay.value,
+            calendarFormat: _calendarFormat,
             eventLoader: (date) {
               return events[date] ?? [];
             },
@@ -55,6 +58,13 @@ class _CalendarPageState extends State<CalendarPage> {
             },
             onPageChanged: (focusedDay) {
               _focusedDay.value = focusedDay;
+            },
+            onFormatChanged: (format) {
+              if (_calendarFormat != format) {
+                setState(() {
+                  _calendarFormat = format;
+                });
+              }
             },
           ),
           const SizedBox(height: 8.0),
