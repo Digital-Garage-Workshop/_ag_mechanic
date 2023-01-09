@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import "package:flutter/material.dart";
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -114,9 +113,9 @@ class LoginPage extends ConsumerWidget {
 }
 
 final emailControllerProvider =
-    Provider((_) => TextEditingController(text: 'eve.holt@reqres.in'));
+    Provider((_) => TextEditingController(text: 'naraa@garage.mn'));
 final passwordControllerProvider =
-    Provider((_) => TextEditingController(text: 'cityslicka'));
+    Provider((_) => TextEditingController(text: 'Test#123'));
 final loginProvider = StateNotifierProvider<LoginNotifier, AsyncValue>((ref) {
   return LoginNotifier(ref);
 });

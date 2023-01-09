@@ -6,7 +6,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '/common/providers/job_service.provider.dart';
 import '/models/job.dart';
-import 'job_event_item.dart';
+import 'event_item.dart';
 import 'event_marker.dart';
 
 class CalendarPage extends ConsumerWidget {
@@ -58,7 +58,7 @@ class CalendarPage extends ConsumerWidget {
               itemBuilder: (_, index) {
                 final job = selectedEvents.elementAt(index);
 
-                return JobEventItem(data: job);
+                return EventItem(data: job);
               },
             ),
           ),

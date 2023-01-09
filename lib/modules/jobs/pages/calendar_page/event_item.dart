@@ -4,8 +4,8 @@ import 'package:intl/intl.dart';
 
 import '/models/job.dart';
 
-class JobEventItem extends StatelessWidget {
-  const JobEventItem({super.key, required this.data});
+class EventItem extends StatelessWidget {
+  const EventItem({super.key, required this.data});
 
   final Job data;
 

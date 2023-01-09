@@ -17,16 +17,18 @@ class AuthService {
   Future<dynamic> login(String email, String password) async {
     try {
       final payload = {
-        "email": email,
+        "username": email,
         "password": password,
       };
-      final response = await _dio.post("/login", data: payload);
+
+      final response = await _dio.post("/auth/login", data: payload);
 
       return response.data;
     } on DioError catch (error) {
       print(error);
       rethrow;
     } catch (error) {
+      print(error);
       rethrow;
     }
   }

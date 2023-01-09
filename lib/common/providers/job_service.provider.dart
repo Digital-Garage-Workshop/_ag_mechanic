@@ -21,6 +21,8 @@ class JobService {
     try {
       // final payload = {};
       // final response = await _dio.get("/login");
+      await Future.delayed(const Duration(seconds: 1));
+
       const jsonString = '''[
         {
           "id": 1,
@@ -60,6 +62,30 @@ class JobService {
       return json
           .map((job) => Job.fromJson({...job, 'id': job['id'].toString()}))
           .toList();
+    } on DioError catch (error) {
+      rethrow;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<Job> fetchJob(String id) async {
+    try {
+      // final payload = {};
+      // final response = await _dio.get("/login");
+      await Future.delayed(const Duration(seconds: 1));
+
+      const jsonString = '''{
+        "id": 1,
+        "date": "2023-01-09 00:00:00.000Z",
+        "startTime": "10:00",
+        "endTime": "11:00",
+        "status": "pending",
+        "plateNumber": "1234ABC"
+      }''';
+      final json = jsonDecode(jsonString) as Map<String, dynamic>;
+
+      return Job.fromJson({...json, 'id': json['id'].toString()});
     } on DioError catch (error) {
       rethrow;
     } catch (error) {

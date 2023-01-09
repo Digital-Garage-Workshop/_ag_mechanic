@@ -8,9 +8,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'common/providers/client.provider.dart';
 import 'common/providers/connectivity.provider.dart';
 import 'modules/auth/pages/login.page.dart';
-import 'modules/jobs/pages/job_page.dart';
+import 'modules/jobs/pages/job_page/index.dart';
 import 'modules/others/pages/error.page.dart';
-import 'modules/others/pages/home_page.dart';
+import 'modules/others/pages/home.page.dart';
 
 GoRouter generateRouter(WidgetRef ref) {
   return GoRouter(
