@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '/models/job.dart';
 import 'client.provider.dart';
 
-final jobServiceProvider = Provider<JobService>((ref) {
+final jobServiceProvider = Provider((ref) {
   final client = ref.watch(clientProvider);
 
   return JobService(client);

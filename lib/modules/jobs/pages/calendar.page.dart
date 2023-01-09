@@ -68,42 +68,33 @@ class CalendarPage extends ConsumerWidget {
   }
 }
 
-final firstDayProvider = StateProvider<DateTime>(
-  (ref) {
-    final today = DateTime.now();
-    final firstDay = DateTime(today.year, today.month - 3, today.day);
+final firstDayProvider = StateProvider((ref) {
+  final today = DateTime.now();
+  final firstDay = DateTime(today.year, today.month - 3, today.day);
 
-    return firstDay;
-  },
-);
-final lastDayProvider = StateProvider<DateTime>(
-  (ref) {
-    final today = DateTime.now();
-    final firstDay = DateTime(today.year, today.month + 3, today.day);
+  return firstDay;
+});
+final lastDayProvider = StateProvider((ref) {
+  final today = DateTime.now();
+  final firstDay = DateTime(today.year, today.month + 3, today.day);
 
-    return firstDay;
-  },
-);
-final calendarFormatProvider = StateProvider<CalendarFormat>(
+  return firstDay;
+});
+final calendarFormatProvider = StateProvider(
   (ref) => CalendarFormat.month,
 );
-final focusedDayProvider = StateProvider<DateTime>(
-  (ref) {
-    final now = DateTime.now();
+final focusedDayProvider = StateProvider((ref) {
+  final now = DateTime.now();
 
-    return DateTime.utc(now.year, now.month, now.day);
-  },
-);
-final selectedEventsProvider = StateProvider<List<Job>>(
-  (ref) {
-    final focusedDay = ref.watch(focusedDayProvider);
-    final events = ref.watch(fetchJobsProvider);
+  return DateTime.utc(now.year, now.month, now.day);
+});
+final selectedEventsProvider = StateProvider((ref) {
+  final focusedDay = ref.watch(focusedDayProvider);
+  final events = ref.watch(fetchJobsProvider);
 
-    return events.valueOrNull?[focusedDay] ?? [];
-  },
-);
-final fetchJobsProvider =
-    FutureProvider<LinkedHashMap<DateTime, List<Job>>>((ref) async {
+  return events.valueOrNull?[focusedDay] ?? [];
+});
+final fetchJobsProvider = FutureProvider((ref) async {
   final jobService = ref.watch(jobServiceProvider);
   final jobs = await jobService.fetchJobs();
   final events = LinkedHashMap<DateTime, List<Job>>(

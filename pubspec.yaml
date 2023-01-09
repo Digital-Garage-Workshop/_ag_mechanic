@@ -32,7 +32,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  async: ^2.9.0
   calendar_view: ^1.0.1
+  connectivity_plus: ^3.0.2
   dio: ^4.0.6
   flutter_hooks: ^0.18.0
   flutter_secure_storage: ^7.0.1

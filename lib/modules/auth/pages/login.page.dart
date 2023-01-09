@@ -1,18 +1,16 @@
 import "package:flutter/material.dart";
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '/common/providers/auth_service.provider.dart';
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+class LoginPage extends ConsumerWidget {
+  const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final emailController = ref.watch(emailControllerProvider);
+    final passwordController = ref.watch(passwordControllerProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login Page"),
@@ -43,11 +41,12 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                controller: nameController,
+                controller: emailController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'User Name',
                 ),
+                enabled: !ref.watch(loginProvider).isLoading,
               ),
             ),
             Container(
@@ -59,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
+                enabled: !ref.watch(loginProvider).isLoading,
               ),
             ),
             // TextButton(
@@ -73,11 +73,21 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: ElevatedButton(
-                child: const Text('Login'),
-                onPressed: () {
-                  print(nameController.text);
-                  print(passwordController.text);
-                },
+                onPressed: !ref.watch(loginProvider).isLoading
+                    ? () => ref.read(loginProvider.notifier).login(
+                          emailController.text,
+                          passwordController.text,
+                        )
+                    : null,
+                child: ref.watch(loginProvider).isLoading
+                    ? const SizedBox(
+                        height: 20.0,
+                        width: 20.0,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Text('Login'),
               ),
             ),
             // Row(
@@ -99,5 +109,27 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+}
+
+final emailControllerProvider =
+    Provider((_) => TextEditingController(text: 'eve.holt@reqres.in'));
+final passwordControllerProvider =
+    Provider((_) => TextEditingController(text: 'cityslicka'));
+final loginProvider = StateNotifierProvider<LoginNotifier, AsyncValue>((ref) {
+  return LoginNotifier(ref);
+});
+
+class LoginNotifier extends StateNotifier<AsyncValue> {
+  LoginNotifier(this.ref) : super(const AsyncData(null));
+
+  final Ref ref;
+
+  void login(String email, String password) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final service = ref.watch(authServiceProvider);
+      await service.login(email, password);
+    });
   }
 }
