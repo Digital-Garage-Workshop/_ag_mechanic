@@ -53,13 +53,21 @@ class CalendarPage extends ConsumerWidget {
           ),
           const SizedBox(height: 8.0),
           Expanded(
-            child: ListView.builder(
-              itemCount: selectedEvents.length,
-              itemBuilder: (_, index) {
-                final job = selectedEvents.elementAt(index);
+            child: events.when(
+              data: (data) {
+                return ListView.builder(
+                  itemCount: selectedEvents.length,
+                  itemBuilder: (_, index) {
+                    final job = selectedEvents.elementAt(index);
 
-                return EventItem(data: job);
+                    return EventItem(data: job);
+                  },
+                );
               },
+              error: (_, __) => const SizedBox(),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
           ),
         ],
