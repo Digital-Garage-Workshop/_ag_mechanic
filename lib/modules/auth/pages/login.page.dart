@@ -70,10 +70,6 @@ class LoginPage extends ConsumerWidget {
             //     'Forgot Password',
             //   ),
             // ),
-            if (ref.watch(loginProvider).error != null)
-              Center(
-                child: Text(ref.watch(loginProvider).error.toString()),
-              ),
             Container(
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
