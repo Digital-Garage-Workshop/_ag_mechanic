@@ -50,7 +50,7 @@ class JobDiagnosisForm extends ConsumerWidget {
                           Table(
                             border: TableBorder.all(),
                             defaultColumnWidth: const FlexColumnWidth(1),
-                            columnWidths: const {0: FlexColumnWidth(1)},
+                            columnWidths: const {0: FlexColumnWidth(2.5)},
                             children: [
                               const TableRow(children: [
                                 TableCell(
@@ -87,6 +87,43 @@ class JobDiagnosisForm extends ConsumerWidget {
                                   ),
                                 ),
                               ]),
+                              // TableRow(children: [
+                              //   const TableCell(
+                              //     child: SizedBox(),
+                              //   ),
+                              //   TableCell(
+                              //     child: Checkbox(
+                              //       visualDensity: const VisualDensity(
+                              //         horizontal: 0,
+                              //         vertical: -4,
+                              //       ),
+                              //       value: form.values.contains("normal"),
+                              //       onChanged: (value) {
+                              //         final currentState =
+                              //             ref.read(formProvider.notifier).state;
+                              //         ref.read(formProvider.notifier).state =
+                              //             Map.of(currentState
+                              //               ..addAll({check: "normal"}));
+                              //       },
+                              //     ),
+                              //   ),
+                              //   TableCell(
+                              //     child: Checkbox(
+                              //       visualDensity: const VisualDensity(
+                              //         horizontal: 0,
+                              //         vertical: -4,
+                              //       ),
+                              //       value: form.values.contains("not_normal"),
+                              //       onChanged: (value) {
+                              //         final currentState =
+                              //             ref.read(formProvider.notifier).state;
+                              //         ref.read(formProvider.notifier).state =
+                              //             Map.of(currentState
+                              //               ..addAll({check: "not_normal"}));
+                              //       },
+                              //     ),
+                              //   ),
+                              // ]),
                               ...[
                                 "Урд наклад",
                                 "Урд тоормосны диск (Пиланз)",
@@ -120,40 +157,45 @@ class JobDiagnosisForm extends ConsumerWidget {
                                       ),
                                     ),
                                     TableCell(
-                                      child: Checkbox(
-                                        visualDensity: const VisualDensity(
-                                          horizontal: 0,
-                                          vertical: -4,
+                                      child: Transform.scale(
+                                        scale: 1.5,
+                                        child: Checkbox(
+                                          visualDensity: const VisualDensity(
+                                            horizontal: 0,
+                                            vertical: -4,
+                                          ),
+                                          value: form[check] == "normal",
+                                          onChanged: (value) {
+                                            final currentState = ref
+                                                .read(formProvider.notifier)
+                                                .state;
+                                            ref
+                                                .read(formProvider.notifier)
+                                                .state = Map.of(currentState
+                                              ..addAll({check: "normal"}));
+                                          },
                                         ),
-                                        value: form[check] == "normal",
-                                        onChanged: (value) {
-                                          ref
-                                                  .read(formProvider.notifier)
-                                                  .state =
-                                              Map.of(ref
-                                                  .read(formProvider.notifier)
-                                                  .state
-                                                ..addAll({check: "normal"}));
-                                        },
                                       ),
                                     ),
                                     TableCell(
-                                      child: Checkbox(
-                                        visualDensity: const VisualDensity(
-                                          horizontal: 0,
-                                          vertical: -4,
+                                      child: Transform.scale(
+                                        scale: 1.5,
+                                        child: Checkbox(
+                                          visualDensity: const VisualDensity(
+                                            horizontal: 0,
+                                            vertical: -4,
+                                          ),
+                                          value: form[check] == "not_normal",
+                                          onChanged: (value) {
+                                            final currentState = ref
+                                                .read(formProvider.notifier)
+                                                .state;
+                                            ref
+                                                .read(formProvider.notifier)
+                                                .state = Map.of(currentState
+                                              ..addAll({check: "not_normal"}));
+                                          },
                                         ),
-                                        value: form[check] == "not_normal",
-                                        onChanged: (value) {
-                                          ref
-                                                  .read(formProvider.notifier)
-                                                  .state =
-                                              Map.of(ref
-                                                  .read(formProvider.notifier)
-                                                  .state
-                                                ..addAll(
-                                                    {check: "not_normal"}));
-                                        },
                                       ),
                                     ),
                                   ]))
