@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DetailItemData {
-  const DetailItemData({
+class JobDetailItemData {
+  const JobDetailItemData({
     required this.icon,
     required this.subtitle,
     required this.title,
@@ -12,21 +12,28 @@ class DetailItemData {
   final String title;
 }
 
-class DetailItem extends StatelessWidget {
-  const DetailItem({
+class JobDetailItem extends StatelessWidget {
+  const JobDetailItem({
     super.key,
     required this.data,
   });
 
-  final DetailItemData data;
+  final JobDetailItemData data;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      dense: true,
+      visualDensity: const VisualDensity(
+        horizontal: 0,
+        vertical: -4,
+      ),
+      contentPadding: const EdgeInsets.all(0),
+      horizontalTitleGap: 0,
       leading: Icon(
         data.icon,
-        color: Colors.blue,
-        size: 32,
+        color: Theme.of(context).primaryColor,
+        size: 24,
       ),
       subtitle: Text(
         data.subtitle,
