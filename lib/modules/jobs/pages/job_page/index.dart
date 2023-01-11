@@ -38,7 +38,7 @@ class JobPage extends ConsumerWidget {
               padding: const EdgeInsets.all(12),
               children: [
                 JobDetails(data: data),
-                const JobDiagnosis(),
+                JobDiagnosis(jid: jid),
               ],
             );
           },

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
-import 'job_diagnosis_form.dart';
+import 'package:go_router/go_router.dart';
 
 class JobDiagnosis extends StatelessWidget {
-  const JobDiagnosis({super.key});
+  const JobDiagnosis({super.key, required this.jid});
+
+  final String jid;
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,7 @@ class JobDiagnosis extends StatelessWidget {
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: () {
-                showMaterialModalBottomSheet(
-                  context: context,
-                  builder: (context) => const JobDiagnosisForm(),
-                );
-              },
+              onPressed: () => context.push('/job_diagnosis/$jid'),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [

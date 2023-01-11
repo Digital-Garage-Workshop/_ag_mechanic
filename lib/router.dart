@@ -9,6 +9,7 @@ import 'common/providers/client.provider.dart';
 import 'common/providers/connectivity.provider.dart';
 import 'modules/auth/pages/login.page.dart';
 import 'modules/jobs/pages/job_page/index.dart';
+import 'modules/jobs/pages/job_diagnosis_page/index.dart';
 import 'modules/others/pages/error.page.dart';
 import 'modules/others/pages/home.page.dart';
 
@@ -23,6 +24,12 @@ GoRouter generateRouter(WidgetRef ref) {
       GoRoute(
         path: '/jobs/:jid',
         builder: (context, state) => JobPage(
+          jid: state.params["jid"]!,
+        ),
+      ),
+      GoRoute(
+        path: '/job_diagnosis/:jid',
+        builder: (context, state) => JobDiagnosisPage(
           jid: state.params["jid"]!,
         ),
       ),

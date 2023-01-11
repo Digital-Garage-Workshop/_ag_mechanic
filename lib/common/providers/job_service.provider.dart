@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '/models/diagnosis_check.dart';
 import '/models/job.dart';
 import '/models/job_history.dart';
 import 'client.provider.dart';
@@ -20,73 +21,55 @@ class JobService {
 
   Future<List<Job>> fetchJobs() async {
     try {
-      // final payload = {};
-      // final response = await _dio.get("/login");
-      await Future.delayed(const Duration(seconds: 1));
-
-      const jsonString = '''[
-        {
-          "id": 1,
-          "date": "2023-01-09 00:00:00.000Z",
-          "startTime": "10:00",
-          "endTime": "11:00",
-          "status": "pending",
-          "plateNumber": "1234ABC"
-        },
-        {
-          "id": 2,
-          "date": "2023-01-09 00:00:00.000Z",
-          "startTime": "10:00",
-          "endTime": "11:00",
-          "status": "ongoing",
-          "plateNumber": "2345ABC"
-        },
-        {
-          "id": 3,
-          "date": "2023-01-09 00:00:00.000Z",
-          "startTime": "10:00",
-          "endTime": "11:00",
-          "status": "done",
-          "plateNumber": "3456ABC"
-        },
-        {
-          "id": 4,
-          "date": "2023-01-10 00:00:00.000Z",
-          "startTime": "10:00",
-          "endTime": "11:00",
-          "status": "done",
-          "plateNumber": "4567ABC"
-        }
-      ]''';
-      final json = jsonDecode(jsonString) as List;
+      final response = await dio.get("/mechanic/joblist");
+      final json = response.data as List;
 
       return json
-          .map((job) => Job.fromJson({...job, 'id': job['id'].toString()}))
+          .map((job) => Job.fromJson({
+                'id': job['id'].toString(),
+                "date": job['booking_date'] + "T00:00:00.000Z",
+                "startTime": job['booking_time'],
+                "endTime": job['booking_endtime'],
+                "status": job['rstatus'] == 'waiting'
+                    ? 'pending'
+                    : job['rstatus'] == 'finished'
+                        ? 'done'
+                        : 'ongoing',
+                "plateNumber": job['carnumber']
+              }))
           .toList();
     } on DioError catch (error) {
+      print(error);
       rethrow;
     } catch (error) {
+      print(error);
       rethrow;
     }
   }
 
   Future<Job> fetchJob(String id) async {
     try {
-      // final payload = {};
-      // final response = await _dio.get("/login");
-      await Future.delayed(const Duration(seconds: 1));
+      final queryParameters = {
+        "bookingid": id,
+      };
+      final response = await dio.get(
+        "/mechanic/jobdetal",
+        queryParameters: queryParameters,
+      );
+      final json = response.data as Map<String, dynamic>;
 
-      const jsonString = '''{
-        "id": 1,
-        "date": "2023-01-09 00:00:00.000Z",
-        "startTime": "10:00",
-        "endTime": "11:00",
-        "status": "pending",
-        "plateNumber": "6510УНЧ"
-      }''';
-      final json = jsonDecode(jsonString) as Map<String, dynamic>;
-
-      return Job.fromJson({...json, 'id': json['id'].toString()});
+      return Job.fromJson({
+        'id': json['id'].toString(),
+        "date": json['booking_date'] + "T00:00:00.000Z",
+        "startTime": json['rstart_time'],
+        "endTime": json['rend_time'],
+        "status": json['rstatus'] == 'waiting'
+            ? 'pending'
+            : json['rstatus'] == 'finished'
+                ? 'done'
+                : 'ongoing',
+        "plateNumber": json['book']['carnumber']
+      });
     } on DioError catch (error) {
       rethrow;
     } catch (error) {
@@ -251,6 +234,25 @@ class JobService {
                   'id': history['id'].toString(),
                 },
               ))
+          .toList();
+    } on DioError catch (error) {
+      rethrow;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<List<DiagnosisCheck>> fetchCheckList() async {
+    try {
+      final response = await dio.get("/mechanic/checklist");
+      final json = response.data as List;
+
+      return json
+          .map((job) => DiagnosisCheck.fromJson({
+                'id': job['id'].toString(),
+                "name": job['name'],
+                "slug": job['slug'],
+              }))
           .toList();
     } on DioError catch (error) {
       rethrow;

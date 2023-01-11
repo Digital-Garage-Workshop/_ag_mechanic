@@ -38,7 +38,7 @@ class CustomInterceptors extends Interceptor {
     try {
       if (response.requestOptions.path == "/auth/login" &&
           response.statusCode == 200) {
-        final accessToken = response.data['data']['token'];
+        final accessToken = response.data['token'];
 
         const storage = FlutterSecureStorage();
         await storage.write(key: accessTokenKey, value: accessToken);
