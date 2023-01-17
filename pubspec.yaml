@@ -36,6 +36,8 @@ dependencies:
   calendar_view: ^1.0.1
   connectivity_plus: ^3.0.2
   dio: ^4.0.6
+  firebase_core: ^2.4.1
+  firebase_messaging: ^14.2.1
   flutter_hooks: ^0.18.0
   flutter_secure_storage: ^7.0.1
   freezed_annotation: ^2.2.0

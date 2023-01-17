@@ -23,8 +23,8 @@ mixin _$Job {
   String get id => throw _privateConstructorUsedError;
   String get plateNumber => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
-  String get startTime => throw _privateConstructorUsedError;
-  String get endTime => throw _privateConstructorUsedError;
+  String? get startTime => throw _privateConstructorUsedError;
+  String? get endTime => throw _privateConstructorUsedError;
   JobStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,8 +41,8 @@ abstract class $JobCopyWith<$Res> {
       {String id,
       String plateNumber,
       DateTime date,
-      String startTime,
-      String endTime,
+      String? startTime,
+      String? endTime,
       JobStatus status});
 }
 
@@ -61,8 +61,8 @@ class _$JobCopyWithImpl<$Res, $Val extends Job> implements $JobCopyWith<$Res> {
     Object? id = null,
     Object? plateNumber = null,
     Object? date = null,
-    Object? startTime = null,
-    Object? endTime = null,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
@@ -78,14 +78,14 @@ class _$JobCopyWithImpl<$Res, $Val extends Job> implements $JobCopyWith<$Res> {
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      startTime: null == startTime
+      startTime: freezed == startTime
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      endTime: null == endTime
+              as String?,
+      endTime: freezed == endTime
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -104,8 +104,8 @@ abstract class _$$_JobCopyWith<$Res> implements $JobCopyWith<$Res> {
       {String id,
       String plateNumber,
       DateTime date,
-      String startTime,
-      String endTime,
+      String? startTime,
+      String? endTime,
       JobStatus status});
 }
 
@@ -121,8 +121,8 @@ class __$$_JobCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$_Job>
     Object? id = null,
     Object? plateNumber = null,
     Object? date = null,
-    Object? startTime = null,
-    Object? endTime = null,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
     Object? status = null,
   }) {
     return _then(_$_Job(
@@ -138,14 +138,14 @@ class __$$_JobCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$_Job>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      startTime: null == startTime
+      startTime: freezed == startTime
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      endTime: null == endTime
+              as String?,
+      endTime: freezed == endTime
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -174,9 +174,9 @@ class _$_Job implements _Job {
   @override
   final DateTime date;
   @override
-  final String startTime;
+  final String? startTime;
   @override
-  final String endTime;
+  final String? endTime;
   @override
   final JobStatus status;
 
@@ -224,8 +224,8 @@ abstract class _Job implements Job {
       {required final String id,
       required final String plateNumber,
       required final DateTime date,
-      required final String startTime,
-      required final String endTime,
+      required final String? startTime,
+      required final String? endTime,
       required final JobStatus status}) = _$_Job;
 
   factory _Job.fromJson(Map<String, dynamic> json) = _$_Job.fromJson;
@@ -237,9 +237,9 @@ abstract class _Job implements Job {
   @override
   DateTime get date;
   @override
-  String get startTime;
+  String? get startTime;
   @override
-  String get endTime;
+  String? get endTime;
   @override
   JobStatus get status;
   @override

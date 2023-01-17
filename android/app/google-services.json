@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "103157950704",
+    "project_id": "garage-mechanic",
+    "storage_bucket": "garage-mechanic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103157950704:android:4139b37d6c050a608dfa35",
+        "android_client_info": {
+          "package_name": "com.genuineparts.mechanic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103157950704-s1pq4e57rioupl2ikrv7ooipbnt3b900.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC2ENhVAs3pMC70Z-XA6gkbYOuklDir2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103157950704-s1pq4e57rioupl2ikrv7ooipbnt3b900.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "103157950704-qfu7nebdmraiqlhcfh281l6n35vo7o4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.genuineparts.mechanic"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

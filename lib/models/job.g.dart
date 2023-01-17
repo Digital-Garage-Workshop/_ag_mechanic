@@ -10,8 +10,8 @@ _$_Job _$$_JobFromJson(Map<String, dynamic> json) => _$_Job(
       id: json['id'] as String,
       plateNumber: json['plateNumber'] as String,
       date: DateTime.parse(json['date'] as String),
-      startTime: json['startTime'] as String,
-      endTime: json['endTime'] as String,
+      startTime: json['startTime'] as String?,
+      endTime: json['endTime'] as String?,
       status: $enumDecode(_$JobStatusEnumMap, json['status']),
     );
 

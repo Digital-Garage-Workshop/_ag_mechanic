@@ -30,11 +30,7 @@ class JobService {
                 "date": job['booking_date'] + "T00:00:00.000Z",
                 "startTime": job['booking_time'],
                 "endTime": job['booking_endtime'],
-                "status": job['rstatus'] == 'waiting'
-                    ? 'pending'
-                    : job['rstatus'] == 'finished'
-                        ? 'done'
-                        : 'ongoing',
+                "status": job['rstatus'],
                 "plateNumber": job['carnumber']
               }))
           .toList();
@@ -63,11 +59,7 @@ class JobService {
         "date": json['booking_date'] + "T00:00:00.000Z",
         "startTime": json['rstart_time'],
         "endTime": json['rend_time'],
-        "status": json['rstatus'] == 'waiting'
-            ? 'pending'
-            : json['rstatus'] == 'finished'
-                ? 'done'
-                : 'ongoing',
+        "status": json['rstatus'],
         "plateNumber": json['book']['carnumber']
       });
     } on DioError catch (error) {
@@ -77,11 +69,15 @@ class JobService {
     }
   }
 
-  Future<List<JobHistory>> fetchJobHistory(String id) async {
+  Future<List<JobHistory>> fetchJobHistory(String vin) async {
     try {
-      // final payload = {};
-      // final response = await _dio.get("/login");
-      await Future.delayed(const Duration(seconds: 1));
+      final queryParameters = {
+        "vin_number": vin,
+      };
+      final response = await dio.get(
+        "/mechanic/repairhistory",
+        queryParameters: queryParameters,
+      );
 
       const jsonString = '''[
         {
@@ -225,13 +221,23 @@ class JobService {
           }
         }
       ]''';
-      final json = jsonDecode(jsonString) as List;
+      final json = response.data as List;
 
       return json
           .map((history) => JobHistory.fromJson(
                 {
-                  ...history,
                   'id': history['id'].toString(),
+                  "date": history['repair_date'] + "T00:00:00.000Z",
+                  "job": "Хөдөлгүүрийн тос солих",
+                  "memo": "Хөдөлгүүрийн тос сольсон",
+                  "organization": "Женуйне Партс ХХК",
+                  "service": "Манлай Сервис",
+                  "vehicle": {
+                    "manufacturer": history['carmanu'],
+                    "model": history["carmodel"],
+                    "mileage": history['kilometr'],
+                    "mileageUnit": history['kilotype']
+                  }
                 },
               ))
           .toList();

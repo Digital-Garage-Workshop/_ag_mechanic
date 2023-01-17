@@ -10,8 +10,8 @@ class Job with _$Job {
     required String id,
     required String plateNumber,
     required DateTime date,
-    required String startTime,
-    required String endTime,
+    required String? startTime,
+    required String? endTime,
     required JobStatus status,
   }) = _Job;
 
