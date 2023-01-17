@@ -7,6 +7,8 @@ class NotificationsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final token = ref.watch(tokenProvider);
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -15,13 +17,18 @@ class NotificationsPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () async {
                 final token = await FirebaseMessaging.instance.getToken();
-                print(token);
+                ref.read(tokenProvider.notifier).state = token;
               },
               child: const Text('FCM registration token'),
-            )
+            ),
+            if (token != null) Text(token),
           ],
         ),
       ),
     );
   }
 }
+
+final tokenProvider = StateProvider<String?>((ref) {
+  return null;
+});
