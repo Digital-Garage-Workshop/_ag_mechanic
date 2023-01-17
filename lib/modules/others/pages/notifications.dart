@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NotificationsPage extends ConsumerWidget {
@@ -16,8 +17,9 @@ class NotificationsPage extends ConsumerWidget {
             const Text('Notifications Page'),
             ElevatedButton(
               onPressed: () async {
-                final token = await FirebaseMessaging.instance.getToken();
-                ref.read(tokenProvider.notifier).state = token;
+                // final token = await FirebaseMessaging.instance.getToken();
+                // ref.read(tokenProvider.notifier).state = token;
+                Clipboard.setData(ClipboardData(text: "token"));
               },
               child: const Text('FCM registration token'),
             ),
