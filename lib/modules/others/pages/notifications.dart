@@ -17,9 +17,9 @@ class NotificationsPage extends ConsumerWidget {
             const Text('Notifications Page'),
             ElevatedButton(
               onPressed: () async {
-                // final token = await FirebaseMessaging.instance.getToken();
-                // ref.read(tokenProvider.notifier).state = token;
-                Clipboard.setData(ClipboardData(text: "token"));
+                final token = await FirebaseMessaging.instance.getToken();
+                ref.read(tokenProvider.notifier).state = token;
+                Clipboard.setData(ClipboardData(text: token));
               },
               child: const Text('FCM registration token'),
             ),
