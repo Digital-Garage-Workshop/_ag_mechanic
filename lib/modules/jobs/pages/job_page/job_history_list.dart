@@ -7,22 +7,22 @@ import '/common/providers/job_service.provider.dart';
 import '/models/job_history.dart';
 import 'job_history_item.dart';
 
-final fetchHistoryProvider =
-    FutureProvider.family<List<JobHistory>, String>((ref, id) async {
+final fetchHistoryProvider = FutureProvider.autoDispose
+    .family<List<JobHistory>, String>((ref, vin) async {
   final jobService = ref.watch(jobServiceProvider);
-  final list = await jobService.fetchJobHistory(id);
+  final list = await jobService.fetchJobHistory(vin);
 
   return list;
 });
 
 class JobHistoryList extends ConsumerWidget {
-  const JobHistoryList({super.key, required this.jid});
+  const JobHistoryList({super.key, required this.vin});
 
-  final String jid;
+  final String vin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final list = ref.watch(fetchHistoryProvider(jid));
+    final list = ref.watch(fetchHistoryProvider(vin));
 
     return SafeArea(
       top: false,
@@ -44,6 +44,12 @@ class JobHistoryList extends ConsumerWidget {
                 controller: ModalScrollController.of(context),
                 child: list.when(
                   data: (data) {
+                    if (data.isEmpty) {
+                      return const Center(
+                        child: Text('EMPTY'),
+                      );
+                    }
+
                     return Column(
                       children: data
                           .map((history) => JobHistoryItem(

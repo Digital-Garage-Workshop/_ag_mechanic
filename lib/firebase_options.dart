@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '103157950704',
     projectId: 'garage-mechanic',
     storageBucket: 'garage-mechanic.appspot.com',
-    iosClientId: '103157950704-qfu7nebdmraiqlhcfh281l6n35vo7o4r.apps.googleusercontent.com',
+    iosClientId:
+        '103157950704-qfu7nebdmraiqlhcfh281l6n35vo7o4r.apps.googleusercontent.com',
     iosBundleId: 'com.genuineparts.mechanic',
   );
 }

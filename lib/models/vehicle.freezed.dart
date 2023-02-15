@@ -20,10 +20,14 @@ Vehicle _$VehicleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Vehicle {
+  String get vin => throw _privateConstructorUsedError;
+  String get plateNumber => throw _privateConstructorUsedError;
   String get manufacturer => throw _privateConstructorUsedError;
   String get model => throw _privateConstructorUsedError;
-  int get mileage => throw _privateConstructorUsedError;
-  String get mileageUnit => throw _privateConstructorUsedError;
+  int get engineSize => throw _privateConstructorUsedError;
+  String? get fuelType => throw _privateConstructorUsedError;
+  int? get mileage => throw _privateConstructorUsedError;
+  String? get mileageUnit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,14 @@ abstract class $VehicleCopyWith<$Res> {
       _$VehicleCopyWithImpl<$Res, Vehicle>;
   @useResult
   $Res call(
-      {String manufacturer, String model, int mileage, String mileageUnit});
+      {String vin,
+      String plateNumber,
+      String manufacturer,
+      String model,
+      int engineSize,
+      String? fuelType,
+      int? mileage,
+      String? mileageUnit});
 }
 
 /// @nodoc
@@ -52,12 +63,24 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? vin = null,
+    Object? plateNumber = null,
     Object? manufacturer = null,
     Object? model = null,
-    Object? mileage = null,
-    Object? mileageUnit = null,
+    Object? engineSize = null,
+    Object? fuelType = freezed,
+    Object? mileage = freezed,
+    Object? mileageUnit = freezed,
   }) {
     return _then(_value.copyWith(
+      vin: null == vin
+          ? _value.vin
+          : vin // ignore: cast_nullable_to_non_nullable
+              as String,
+      plateNumber: null == plateNumber
+          ? _value.plateNumber
+          : plateNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -66,14 +89,22 @@ class _$VehicleCopyWithImpl<$Res, $Val extends Vehicle>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as String,
-      mileage: null == mileage
+      engineSize: null == engineSize
+          ? _value.engineSize
+          : engineSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      fuelType: freezed == fuelType
+          ? _value.fuelType
+          : fuelType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mileage: freezed == mileage
           ? _value.mileage
           : mileage // ignore: cast_nullable_to_non_nullable
-              as int,
-      mileageUnit: null == mileageUnit
+              as int?,
+      mileageUnit: freezed == mileageUnit
           ? _value.mileageUnit
           : mileageUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -86,7 +117,14 @@ abstract class _$$_VehicleCopyWith<$Res> implements $VehicleCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String manufacturer, String model, int mileage, String mileageUnit});
+      {String vin,
+      String plateNumber,
+      String manufacturer,
+      String model,
+      int engineSize,
+      String? fuelType,
+      int? mileage,
+      String? mileageUnit});
 }
 
 /// @nodoc
@@ -99,12 +137,24 @@ class __$$_VehicleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? vin = null,
+    Object? plateNumber = null,
     Object? manufacturer = null,
     Object? model = null,
-    Object? mileage = null,
-    Object? mileageUnit = null,
+    Object? engineSize = null,
+    Object? fuelType = freezed,
+    Object? mileage = freezed,
+    Object? mileageUnit = freezed,
   }) {
     return _then(_$_Vehicle(
+      vin: null == vin
+          ? _value.vin
+          : vin // ignore: cast_nullable_to_non_nullable
+              as String,
+      plateNumber: null == plateNumber
+          ? _value.plateNumber
+          : plateNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       manufacturer: null == manufacturer
           ? _value.manufacturer
           : manufacturer // ignore: cast_nullable_to_non_nullable
@@ -113,14 +163,22 @@ class __$$_VehicleCopyWithImpl<$Res>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as String,
-      mileage: null == mileage
+      engineSize: null == engineSize
+          ? _value.engineSize
+          : engineSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      fuelType: freezed == fuelType
+          ? _value.fuelType
+          : fuelType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mileage: freezed == mileage
           ? _value.mileage
           : mileage // ignore: cast_nullable_to_non_nullable
-              as int,
-      mileageUnit: null == mileageUnit
+              as int?,
+      mileageUnit: freezed == mileageUnit
           ? _value.mileageUnit
           : mileageUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -129,8 +187,12 @@ class __$$_VehicleCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Vehicle implements _Vehicle {
   const _$_Vehicle(
-      {required this.manufacturer,
+      {required this.vin,
+      required this.plateNumber,
+      required this.manufacturer,
       required this.model,
+      required this.engineSize,
+      required this.fuelType,
       required this.mileage,
       required this.mileageUnit});
 
@@ -138,17 +200,25 @@ class _$_Vehicle implements _Vehicle {
       _$$_VehicleFromJson(json);
 
   @override
+  final String vin;
+  @override
+  final String plateNumber;
+  @override
   final String manufacturer;
   @override
   final String model;
   @override
-  final int mileage;
+  final int engineSize;
   @override
-  final String mileageUnit;
+  final String? fuelType;
+  @override
+  final int? mileage;
+  @override
+  final String? mileageUnit;
 
   @override
   String toString() {
-    return 'Vehicle(manufacturer: $manufacturer, model: $model, mileage: $mileage, mileageUnit: $mileageUnit)';
+    return 'Vehicle(vin: $vin, plateNumber: $plateNumber, manufacturer: $manufacturer, model: $model, engineSize: $engineSize, fuelType: $fuelType, mileage: $mileage, mileageUnit: $mileageUnit)';
   }
 
   @override
@@ -156,9 +226,16 @@ class _$_Vehicle implements _Vehicle {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Vehicle &&
+            (identical(other.vin, vin) || other.vin == vin) &&
+            (identical(other.plateNumber, plateNumber) ||
+                other.plateNumber == plateNumber) &&
             (identical(other.manufacturer, manufacturer) ||
                 other.manufacturer == manufacturer) &&
             (identical(other.model, model) || other.model == model) &&
+            (identical(other.engineSize, engineSize) ||
+                other.engineSize == engineSize) &&
+            (identical(other.fuelType, fuelType) ||
+                other.fuelType == fuelType) &&
             (identical(other.mileage, mileage) || other.mileage == mileage) &&
             (identical(other.mileageUnit, mileageUnit) ||
                 other.mileageUnit == mileageUnit));
@@ -166,8 +243,8 @@ class _$_Vehicle implements _Vehicle {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, manufacturer, model, mileage, mileageUnit);
+  int get hashCode => Object.hash(runtimeType, vin, plateNumber, manufacturer,
+      model, engineSize, fuelType, mileage, mileageUnit);
 
   @JsonKey(ignore: true)
   @override
@@ -185,21 +262,33 @@ class _$_Vehicle implements _Vehicle {
 
 abstract class _Vehicle implements Vehicle {
   const factory _Vehicle(
-      {required final String manufacturer,
+      {required final String vin,
+      required final String plateNumber,
+      required final String manufacturer,
       required final String model,
-      required final int mileage,
-      required final String mileageUnit}) = _$_Vehicle;
+      required final int engineSize,
+      required final String? fuelType,
+      required final int? mileage,
+      required final String? mileageUnit}) = _$_Vehicle;
 
   factory _Vehicle.fromJson(Map<String, dynamic> json) = _$_Vehicle.fromJson;
 
+  @override
+  String get vin;
+  @override
+  String get plateNumber;
   @override
   String get manufacturer;
   @override
   String get model;
   @override
-  int get mileage;
+  int get engineSize;
   @override
-  String get mileageUnit;
+  String? get fuelType;
+  @override
+  int? get mileage;
+  @override
+  String? get mileageUnit;
   @override
   @JsonKey(ignore: true)
   _$$_VehicleCopyWith<_$_Vehicle> get copyWith =>

@@ -21,11 +21,14 @@ Job _$JobFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Job {
   String get id => throw _privateConstructorUsedError;
-  String get plateNumber => throw _privateConstructorUsedError;
-  DateTime get date => throw _privateConstructorUsedError;
-  String? get startTime => throw _privateConstructorUsedError;
-  String? get endTime => throw _privateConstructorUsedError;
   JobStatus get status => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  DateTime get bookedStart => throw _privateConstructorUsedError;
+  DateTime get bookedEnd => throw _privateConstructorUsedError;
+  DateTime? get start => throw _privateConstructorUsedError;
+  DateTime? get end => throw _privateConstructorUsedError;
+  String? get memo => throw _privateConstructorUsedError;
+  Booking get booking => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +42,16 @@ abstract class $JobCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String plateNumber,
-      DateTime date,
-      String? startTime,
-      String? endTime,
-      JobStatus status});
+      JobStatus status,
+      String type,
+      DateTime bookedStart,
+      DateTime bookedEnd,
+      DateTime? start,
+      DateTime? end,
+      String? memo,
+      Booking booking});
+
+  $BookingCopyWith<$Res> get booking;
 }
 
 /// @nodoc
@@ -59,38 +67,61 @@ class _$JobCopyWithImpl<$Res, $Val extends Job> implements $JobCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? plateNumber = null,
-    Object? date = null,
-    Object? startTime = freezed,
-    Object? endTime = freezed,
     Object? status = null,
+    Object? type = null,
+    Object? bookedStart = null,
+    Object? bookedEnd = null,
+    Object? start = freezed,
+    Object? end = freezed,
+    Object? memo = freezed,
+    Object? booking = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      plateNumber: null == plateNumber
-          ? _value.plateNumber
-          : plateNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as JobStatus,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      bookedStart: null == bookedStart
+          ? _value.bookedStart
+          : bookedStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      bookedEnd: null == bookedEnd
+          ? _value.bookedEnd
+          : bookedEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      start: freezed == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      end: freezed == end
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      memo: freezed == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      booking: null == booking
+          ? _value.booking
+          : booking // ignore: cast_nullable_to_non_nullable
+              as Booking,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookingCopyWith<$Res> get booking {
+    return $BookingCopyWith<$Res>(_value.booking, (value) {
+      return _then(_value.copyWith(booking: value) as $Val);
+    });
   }
 }
 
@@ -102,11 +133,17 @@ abstract class _$$_JobCopyWith<$Res> implements $JobCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String plateNumber,
-      DateTime date,
-      String? startTime,
-      String? endTime,
-      JobStatus status});
+      JobStatus status,
+      String type,
+      DateTime bookedStart,
+      DateTime bookedEnd,
+      DateTime? start,
+      DateTime? end,
+      String? memo,
+      Booking booking});
+
+  @override
+  $BookingCopyWith<$Res> get booking;
 }
 
 /// @nodoc
@@ -119,37 +156,52 @@ class __$$_JobCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$_Job>
   @override
   $Res call({
     Object? id = null,
-    Object? plateNumber = null,
-    Object? date = null,
-    Object? startTime = freezed,
-    Object? endTime = freezed,
     Object? status = null,
+    Object? type = null,
+    Object? bookedStart = null,
+    Object? bookedEnd = null,
+    Object? start = freezed,
+    Object? end = freezed,
+    Object? memo = freezed,
+    Object? booking = null,
   }) {
     return _then(_$_Job(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      plateNumber: null == plateNumber
-          ? _value.plateNumber
-          : plateNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      startTime: freezed == startTime
-          ? _value.startTime
-          : startTime // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endTime: freezed == endTime
-          ? _value.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as JobStatus,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      bookedStart: null == bookedStart
+          ? _value.bookedStart
+          : bookedStart // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      bookedEnd: null == bookedEnd
+          ? _value.bookedEnd
+          : bookedEnd // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      start: freezed == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      end: freezed == end
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      memo: freezed == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      booking: null == booking
+          ? _value.booking
+          : booking // ignore: cast_nullable_to_non_nullable
+              as Booking,
     ));
   }
 }
@@ -159,30 +211,39 @@ class __$$_JobCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$_Job>
 class _$_Job implements _Job {
   const _$_Job(
       {required this.id,
-      required this.plateNumber,
-      required this.date,
-      required this.startTime,
-      required this.endTime,
-      required this.status});
+      required this.status,
+      required this.type,
+      required this.bookedStart,
+      required this.bookedEnd,
+      this.start,
+      this.end,
+      this.memo,
+      required this.booking});
 
   factory _$_Job.fromJson(Map<String, dynamic> json) => _$$_JobFromJson(json);
 
   @override
   final String id;
   @override
-  final String plateNumber;
-  @override
-  final DateTime date;
-  @override
-  final String? startTime;
-  @override
-  final String? endTime;
-  @override
   final JobStatus status;
+  @override
+  final String type;
+  @override
+  final DateTime bookedStart;
+  @override
+  final DateTime bookedEnd;
+  @override
+  final DateTime? start;
+  @override
+  final DateTime? end;
+  @override
+  final String? memo;
+  @override
+  final Booking booking;
 
   @override
   String toString() {
-    return 'Job(id: $id, plateNumber: $plateNumber, date: $date, startTime: $startTime, endTime: $endTime, status: $status)';
+    return 'Job(id: $id, status: $status, type: $type, bookedStart: $bookedStart, bookedEnd: $bookedEnd, start: $start, end: $end, memo: $memo, booking: $booking)';
   }
 
   @override
@@ -191,19 +252,22 @@ class _$_Job implements _Job {
         (other.runtimeType == runtimeType &&
             other is _$_Job &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.plateNumber, plateNumber) ||
-                other.plateNumber == plateNumber) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.startTime, startTime) ||
-                other.startTime == startTime) &&
-            (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.bookedStart, bookedStart) ||
+                other.bookedStart == bookedStart) &&
+            (identical(other.bookedEnd, bookedEnd) ||
+                other.bookedEnd == bookedEnd) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
+            (identical(other.memo, memo) || other.memo == memo) &&
+            (identical(other.booking, booking) || other.booking == booking));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, plateNumber, date, startTime, endTime, status);
+  int get hashCode => Object.hash(runtimeType, id, status, type, bookedStart,
+      bookedEnd, start, end, memo, booking);
 
   @JsonKey(ignore: true)
   @override
@@ -222,26 +286,35 @@ class _$_Job implements _Job {
 abstract class _Job implements Job {
   const factory _Job(
       {required final String id,
-      required final String plateNumber,
-      required final DateTime date,
-      required final String? startTime,
-      required final String? endTime,
-      required final JobStatus status}) = _$_Job;
+      required final JobStatus status,
+      required final String type,
+      required final DateTime bookedStart,
+      required final DateTime bookedEnd,
+      final DateTime? start,
+      final DateTime? end,
+      final String? memo,
+      required final Booking booking}) = _$_Job;
 
   factory _Job.fromJson(Map<String, dynamic> json) = _$_Job.fromJson;
 
   @override
   String get id;
   @override
-  String get plateNumber;
-  @override
-  DateTime get date;
-  @override
-  String? get startTime;
-  @override
-  String? get endTime;
-  @override
   JobStatus get status;
+  @override
+  String get type;
+  @override
+  DateTime get bookedStart;
+  @override
+  DateTime get bookedEnd;
+  @override
+  DateTime? get start;
+  @override
+  DateTime? get end;
+  @override
+  String? get memo;
+  @override
+  Booking get booking;
   @override
   @JsonKey(ignore: true)
   _$$_JobCopyWith<_$_Job> get copyWith => throw _privateConstructorUsedError;

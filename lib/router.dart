@@ -15,7 +15,7 @@ import 'modules/others/pages/home.page.dart';
 
 GoRouter generateRouter(WidgetRef ref) {
   return GoRouter(
-    initialLocation: "/",
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
@@ -24,13 +24,13 @@ GoRouter generateRouter(WidgetRef ref) {
       GoRoute(
         path: '/jobs/:jid',
         builder: (context, state) => JobPage(
-          jid: state.params["jid"]!,
+          jid: state.params['jid']!,
         ),
       ),
       GoRoute(
         path: '/job_diagnosis/:jid',
         builder: (context, state) => JobDiagnosisPage(
-          jid: state.params["jid"]!,
+          jid: state.params['jid']!,
         ),
       ),
 
@@ -42,13 +42,13 @@ GoRouter generateRouter(WidgetRef ref) {
     ],
     redirect: (_, state) {
       final isLoggedIn = ref.read(accessTokenProvider)?.isNotEmpty ?? false;
-      final isAuthRoute = ["/login"].contains(state.subloc);
+      final isAuthRoute = ['/login'].contains(state.subloc);
 
       if (!isLoggedIn && !isAuthRoute) {
-        return "/login";
+        return '/login';
       }
       if (isLoggedIn && isAuthRoute) {
-        return "/";
+        return '/';
       }
 
       return null;

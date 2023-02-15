@@ -10,18 +10,18 @@ final authServiceProvider = Provider((ref) {
 });
 
 class AuthService {
-  final Dio _dio;
+  final Dio dio;
 
-  AuthService(this._dio);
+  AuthService(this.dio);
 
   Future<dynamic> login(String email, String password) async {
     try {
       final payload = {
-        "username": email,
-        "password": password,
+        'username': email,
+        'password': password,
       };
 
-      final response = await _dio.post("/auth/login", data: payload);
+      final response = await dio.post('/auth/login', data: payload);
 
       return response.data;
     } on DioError catch (error) {

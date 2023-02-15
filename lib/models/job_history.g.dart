@@ -13,6 +13,7 @@ _$_JobHistory _$$_JobHistoryFromJson(Map<String, dynamic> json) =>
       job: json['job'] as String,
       memo: json['memo'] as String,
       organization: json['organization'] as String,
+      branch: json['branch'] as String,
       service: json['service'] as String,
       vehicle: Vehicle.fromJson(json['vehicle'] as Map<String, dynamic>),
     );
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_JobHistoryToJson(_$_JobHistory instance) =>
       'job': instance.job,
       'memo': instance.memo,
       'organization': instance.organization,
+      'branch': instance.branch,
       'service': instance.service,
       'vehicle': instance.vehicle,
     };

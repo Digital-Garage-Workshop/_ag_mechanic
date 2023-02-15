@@ -7,7 +7,7 @@ import '/common/providers/job_service.provider.dart';
 
 final fetchCheckListProvider = FutureProvider((ref) async {
   final jobService = ref.watch(jobServiceProvider);
-  final list = await jobService.fetchJobHistory("1");
+  final list = await jobService.fetchCheckList();
 
   return list;
 });
@@ -125,27 +125,27 @@ class JobDiagnosisForm extends ConsumerWidget {
                               //   ),
                               // ]),
                               ...[
-                                "Урд наклад",
-                                "Урд тоормосны диск (Пиланз)",
-                                "Хойд наклад",
-                                "Хойд тоормосны диск (Пиланз)",
-                                "Дугуйн хээ",
-                                "Шил арчигчийн резин",
-                                "Шил арчигчийн шингэн",
-                                "Тоормосны шингэний түвшин",
-                                "Хөдөлгүүрийн тосны түвшин",
-                                "Хөргөлтийн шингэний түвшин",
-                                "Холын гэрэл",
-                                "Ойрын гэрэл",
-                                "Манангийн гэрэл (урд)",
-                                "Оврын гэрэл (урд)",
-                                "Дохионы гэрэл (урд)",
-                                "Тоормосны гэрэл",
-                                "Оврын гэрэл (хойд)",
-                                "Дохионы гэрэл (хойд)",
-                                "Ухрахын гэрэл",
-                                "Улсын дугаарын гэрэл",
-                                "Манангийн гэрэл (хойд)",
+                                'Урд наклад',
+                                'Урд тоормосны диск (Пиланз)',
+                                'Хойд наклад',
+                                'Хойд тоормосны диск (Пиланз)',
+                                'Дугуйн хээ',
+                                'Шил арчигчийн резин',
+                                'Шил арчигчийн шингэн',
+                                'Тоормосны шингэний түвшин',
+                                'Хөдөлгүүрийн тосны түвшин',
+                                'Хөргөлтийн шингэний түвшин',
+                                'Холын гэрэл',
+                                'Ойрын гэрэл',
+                                'Манангийн гэрэл (урд)',
+                                'Оврын гэрэл (урд)',
+                                'Дохионы гэрэл (урд)',
+                                'Тоормосны гэрэл',
+                                'Оврын гэрэл (хойд)',
+                                'Дохионы гэрэл (хойд)',
+                                'Ухрахын гэрэл',
+                                'Улсын дугаарын гэрэл',
+                                'Манангийн гэрэл (хойд)',
                               ].map((check) => TableRow(children: [
                                     TableCell(
                                       child: Padding(
@@ -168,7 +168,7 @@ class JobDiagnosisForm extends ConsumerWidget {
                                               horizontal: 0,
                                               vertical: -4,
                                             ),
-                                            value: form[check] == "normal",
+                                            value: form[check] == 'normal',
                                             onChanged: (value) {
                                               final currentState = ref
                                                   .read(formProvider.notifier)
@@ -176,7 +176,7 @@ class JobDiagnosisForm extends ConsumerWidget {
                                               ref
                                                   .read(formProvider.notifier)
                                                   .state = Map.of(currentState
-                                                ..addAll({check: "normal"}));
+                                                ..addAll({check: 'normal'}));
                                             },
                                           ),
                                         ),
@@ -194,7 +194,7 @@ class JobDiagnosisForm extends ConsumerWidget {
                                               horizontal: 0,
                                               vertical: -4,
                                             ),
-                                            value: form[check] == "not_normal",
+                                            value: form[check] == 'not_normal',
                                             onChanged: (value) {
                                               final currentState = ref
                                                   .read(formProvider.notifier)
@@ -203,7 +203,7 @@ class JobDiagnosisForm extends ConsumerWidget {
                                                   .read(formProvider.notifier)
                                                   .state = Map.of(currentState
                                                 ..addAll(
-                                                    {check: "not_normal"}));
+                                                    {check: 'not_normal'}));
                                             },
                                           ),
                                         ),

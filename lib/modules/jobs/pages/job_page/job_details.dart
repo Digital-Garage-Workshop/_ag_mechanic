@@ -19,38 +19,46 @@ class JobDetails extends StatelessWidget {
         child: Column(
           children: [
             ...[
-              const JobDetailItemData(
-                icon: Icons.phone,
-                subtitle: "99505251",
-                title: "Утас",
+              JobDetailItemData(
+                icon: Icons.person,
+                subtitle: data.booking.customer.name,
+                title: 'Нэр',
               ),
-              const JobDetailItemData(
+              JobDetailItemData(
+                icon: Icons.phone,
+                subtitle: data.booking.customer.phone,
+                title: 'Утас',
+              ),
+              JobDetailItemData(
                 icon: Icons.email,
-                subtitle: "tuugii.eclips@yahoo.com",
-                title: "И-мэйл",
+                subtitle: data.booking.customer.email,
+                title: 'И-мэйл',
               ),
               JobDetailItemData(
                 icon: Icons.access_time_filled,
                 subtitle:
-                    '${DateFormat("yyyy/MM/dd").format(data.date)} ${data.startTime} - ${data.endTime}',
-                title: "Цаг захиалга",
+                    '${DateFormat('yyyy/MM/dd HH:mm').format(data.bookedStart)} - ${data.bookedEnd.hour.toString().padLeft(2, '0')}:${data.bookedEnd.minute.toString().padLeft(2, '0')}',
+                title: 'Цаг захиалга',
               ),
               JobDetailItemData(
                 icon: Icons.directions_car,
-                subtitle: 'Toyota / Prius (${data.plateNumber})',
-                title: "Машин",
+                subtitle:
+                    '${data.booking.vehicle.manufacturer} / ${data.booking.vehicle.model} (${data.booking.vehicle.plateNumber})',
+                title: 'Машин',
               ),
-              const JobDetailItemData(
+              JobDetailItemData(
                 icon: Icons.settings,
-                subtitle: "Бензин - Цахилгаан / 1797",
-                title: "Хөдөлгүүр",
+                subtitle:
+                    '${data.booking.vehicle.fuelType ?? '?'} / ${data.booking.vehicle.engineSize}',
+                title: 'Хөдөлгүүр',
               )
             ].map((data) => JobDetailItem(data: data)).toList(),
             ElevatedButton(
               onPressed: () {
                 showMaterialModalBottomSheet(
                   context: context,
-                  builder: (context) => JobHistoryList(jid: data.id),
+                  builder: (context) =>
+                      JobHistoryList(vin: data.booking.vehicle.vin),
                 );
               },
               child: Row(

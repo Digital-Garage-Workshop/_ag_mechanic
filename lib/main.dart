@@ -37,7 +37,7 @@ Future<void> setupApp(ProviderContainer container) async {
   );
 
   const storage = FlutterSecureStorage();
-  final accessToken = await storage.read(key: "accessToken");
+  final accessToken = await storage.read(key: 'accessToken');
   container.read(accessTokenProvider.notifier).state = accessToken;
 
   container.listen(

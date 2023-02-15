@@ -6,6 +6,9 @@ import '/common/providers/job_service.provider.dart';
 import '/models/job.dart';
 import 'job_details.dart';
 import 'job_diagnosis.dart';
+import 'mileage_form.dart';
+import 'memo_form.dart';
+import 'note_form.dart';
 
 final fetchJobProvider = FutureProvider.family<Job, String>((ref, id) async {
   final jobService = ref.watch(jobServiceProvider);
@@ -39,6 +42,9 @@ class JobPage extends ConsumerWidget {
               children: [
                 JobDetails(data: data),
                 JobDiagnosis(jid: jid),
+                MileageForm(jid: jid),
+                MemoForm(jid: jid),
+                NoteForm(jid: jid),
               ],
             );
           },

@@ -19,12 +19,7 @@ class JobDiagnosisPage extends StatelessWidget {
         title: const Text('Ерөнхий үзлэг'),
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(12),
-          children: [
-            JobDiagnosisForm(jid: jid),
-          ],
-        ),
+        child: JobDiagnosisForm(jid: jid),
       ),
     );
   }

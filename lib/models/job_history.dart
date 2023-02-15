@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '/models/vehicle.dart';
+import 'vehicle.dart';
 
 part 'job_history.freezed.dart';
 part 'job_history.g.dart';
@@ -13,6 +13,7 @@ class JobHistory with _$JobHistory {
     required String job,
     required String memo,
     required String organization,
+    required String branch,
     required String service,
     required Vehicle vehicle,
   }) = _JobHistory;

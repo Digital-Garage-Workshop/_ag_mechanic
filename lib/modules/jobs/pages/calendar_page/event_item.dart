@@ -34,11 +34,11 @@ class EventItem extends StatelessWidget {
           color: data.status.color,
         ),
         subtitle: Text(
-          '${DateFormat('yyyy/MM/dd').format(data.date)} ${data.startTime} - ${data.endTime}',
+          '${DateFormat('yyyy/MM/dd HH:mm').format(data.bookedStart)} - ${data.bookedEnd.hour}:${data.bookedEnd.minute.toString().padLeft(2, '0')}',
           style: TextStyle(color: data.status.color),
         ),
         title: Text(
-          data.plateNumber,
+          data.booking.vehicle.plateNumber,
           style: TextStyle(color: data.status.color),
         ),
       ),

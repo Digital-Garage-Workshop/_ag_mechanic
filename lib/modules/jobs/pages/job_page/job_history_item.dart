@@ -38,7 +38,9 @@ class JobHistoryItem extends StatelessWidget {
               children: [
                 Icon(Icons.location_pin, color: Theme.of(context).primaryColor),
                 const SizedBox(width: 8),
-                Text('${history.organization}, ${history.service}'),
+                Flexible(
+                  child: Text('${history.organization}, ${history.service}'),
+                )
               ],
             ),
             const SizedBox(height: 4),
@@ -63,7 +65,9 @@ class JobHistoryItem extends StatelessWidget {
               children: [
                 Icon(Icons.edit_note, color: Theme.of(context).primaryColor),
                 const SizedBox(width: 8),
-                Text(history.memo),
+                Flexible(
+                  child: Text(history.memo),
+                ),
               ],
             ),
           ],

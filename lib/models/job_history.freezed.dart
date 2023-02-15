@@ -25,6 +25,7 @@ mixin _$JobHistory {
   String get job => throw _privateConstructorUsedError;
   String get memo => throw _privateConstructorUsedError;
   String get organization => throw _privateConstructorUsedError;
+  String get branch => throw _privateConstructorUsedError;
   String get service => throw _privateConstructorUsedError;
   Vehicle get vehicle => throw _privateConstructorUsedError;
 
@@ -46,6 +47,7 @@ abstract class $JobHistoryCopyWith<$Res> {
       String job,
       String memo,
       String organization,
+      String branch,
       String service,
       Vehicle vehicle});
 
@@ -70,6 +72,7 @@ class _$JobHistoryCopyWithImpl<$Res, $Val extends JobHistory>
     Object? job = null,
     Object? memo = null,
     Object? organization = null,
+    Object? branch = null,
     Object? service = null,
     Object? vehicle = null,
   }) {
@@ -93,6 +96,10 @@ class _$JobHistoryCopyWithImpl<$Res, $Val extends JobHistory>
       organization: null == organization
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
+              as String,
+      branch: null == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
               as String,
       service: null == service
           ? _value.service
@@ -128,6 +135,7 @@ abstract class _$$_JobHistoryCopyWith<$Res>
       String job,
       String memo,
       String organization,
+      String branch,
       String service,
       Vehicle vehicle});
 
@@ -151,6 +159,7 @@ class __$$_JobHistoryCopyWithImpl<$Res>
     Object? job = null,
     Object? memo = null,
     Object? organization = null,
+    Object? branch = null,
     Object? service = null,
     Object? vehicle = null,
   }) {
@@ -175,6 +184,10 @@ class __$$_JobHistoryCopyWithImpl<$Res>
           ? _value.organization
           : organization // ignore: cast_nullable_to_non_nullable
               as String,
+      branch: null == branch
+          ? _value.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as String,
       service: null == service
           ? _value.service
           : service // ignore: cast_nullable_to_non_nullable
@@ -196,6 +209,7 @@ class _$_JobHistory implements _JobHistory {
       required this.job,
       required this.memo,
       required this.organization,
+      required this.branch,
       required this.service,
       required this.vehicle});
 
@@ -213,13 +227,15 @@ class _$_JobHistory implements _JobHistory {
   @override
   final String organization;
   @override
+  final String branch;
+  @override
   final String service;
   @override
   final Vehicle vehicle;
 
   @override
   String toString() {
-    return 'JobHistory(id: $id, date: $date, job: $job, memo: $memo, organization: $organization, service: $service, vehicle: $vehicle)';
+    return 'JobHistory(id: $id, date: $date, job: $job, memo: $memo, organization: $organization, branch: $branch, service: $service, vehicle: $vehicle)';
   }
 
   @override
@@ -233,6 +249,7 @@ class _$_JobHistory implements _JobHistory {
             (identical(other.memo, memo) || other.memo == memo) &&
             (identical(other.organization, organization) ||
                 other.organization == organization) &&
+            (identical(other.branch, branch) || other.branch == branch) &&
             (identical(other.service, service) || other.service == service) &&
             (identical(other.vehicle, vehicle) || other.vehicle == vehicle));
   }
@@ -240,7 +257,7 @@ class _$_JobHistory implements _JobHistory {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, date, job, memo, organization, service, vehicle);
+      runtimeType, id, date, job, memo, organization, branch, service, vehicle);
 
   @JsonKey(ignore: true)
   @override
@@ -263,6 +280,7 @@ abstract class _JobHistory implements JobHistory {
       required final String job,
       required final String memo,
       required final String organization,
+      required final String branch,
       required final String service,
       required final Vehicle vehicle}) = _$_JobHistory;
 
@@ -279,6 +297,8 @@ abstract class _JobHistory implements JobHistory {
   String get memo;
   @override
   String get organization;
+  @override
+  String get branch;
   @override
   String get service;
   @override

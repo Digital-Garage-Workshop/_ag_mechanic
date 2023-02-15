@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final options = BaseOptions(baseUrl: "https://api.garage.mn/v1");
-const accessTokenKey = "accessToken";
+final options = BaseOptions(baseUrl: 'https://api.garage.mn/v1');
+const accessTokenKey = 'accessToken';
 final clientProvider = Provider((ref) {
   final dio = Dio(options);
   dio.interceptors.add(CustomInterceptors(ref));
@@ -24,7 +24,7 @@ class CustomInterceptors extends Interceptor {
       final accessToken = await storage.read(key: accessTokenKey);
 
       if (accessToken != null) {
-        options.headers["Authorization"] = "Bearer $accessToken";
+        options.headers['Authorization'] = 'Bearer $accessToken';
       }
 
       return handler.next(options);
@@ -36,7 +36,7 @@ class CustomInterceptors extends Interceptor {
   @override
   onResponse(response, handler) async {
     try {
-      if (response.requestOptions.path == "/auth/login" &&
+      if (response.requestOptions.path == '/auth/login' &&
           response.statusCode == 200) {
         final accessToken = response.data['token'];
 

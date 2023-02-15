@@ -19,9 +19,9 @@ class _HomePageState extends State<HomePage> {
     SettingsPage(),
   ];
   final _menuItems = const <MenuItem>[
-    MenuItem(Icons.calendar_month_rounded, "Calendar"),
-    MenuItem(Icons.notifications, "Notifications"),
-    MenuItem(Icons.settings, "Settings"),
+    MenuItem(Icons.calendar_month_rounded, 'Calendar'),
+    MenuItem(Icons.notifications, 'Notifications'),
+    MenuItem(Icons.settings, 'Settings'),
   ];
 
   @override

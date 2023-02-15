@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '/common/providers/auth_service.provider.dart';
@@ -13,7 +13,7 @@ class LoginPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: const Text('Login Page'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -46,7 +46,7 @@ class LoginPage extends ConsumerWidget {
                   border: OutlineInputBorder(),
                   labelText: 'User Name',
                 ),
-                enabled: !ref.watch(loginProvider).isLoading,
+                enabled: !ref.watch(loginControllerProvider).isLoading,
               ),
             ),
             Container(
@@ -58,7 +58,7 @@ class LoginPage extends ConsumerWidget {
                   border: OutlineInputBorder(),
                   labelText: 'Password',
                 ),
-                enabled: !ref.watch(loginProvider).isLoading,
+                enabled: !ref.watch(loginControllerProvider).isLoading,
               ),
             ),
             // TextButton(
@@ -73,13 +73,13 @@ class LoginPage extends ConsumerWidget {
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: ElevatedButton(
-                onPressed: !ref.watch(loginProvider).isLoading
-                    ? () => ref.read(loginProvider.notifier).login(
+                onPressed: !ref.watch(loginControllerProvider).isLoading
+                    ? () => ref.read(loginControllerProvider.notifier).login(
                           emailController.text,
                           passwordController.text,
                         )
                     : null,
-                child: ref.watch(loginProvider).isLoading
+                child: ref.watch(loginControllerProvider).isLoading
                     ? const SizedBox(
                         height: 20.0,
                         width: 20.0,
@@ -116,12 +116,13 @@ final emailControllerProvider =
     Provider((_) => TextEditingController(text: 'naraa@garage.mn'));
 final passwordControllerProvider =
     Provider((_) => TextEditingController(text: 'Test#123'));
-final loginProvider = StateNotifierProvider<LoginNotifier, AsyncValue>((ref) {
-  return LoginNotifier(ref);
+final loginControllerProvider =
+    StateNotifierProvider<LoginControllerNotifier, AsyncValue>((ref) {
+  return LoginControllerNotifier(ref);
 });
 
-class LoginNotifier extends StateNotifier<AsyncValue> {
-  LoginNotifier(this.ref) : super(const AsyncData(null));
+class LoginControllerNotifier extends StateNotifier<AsyncValue> {
+  LoginControllerNotifier(this.ref) : super(const AsyncData(null));
 
   final Ref ref;
 

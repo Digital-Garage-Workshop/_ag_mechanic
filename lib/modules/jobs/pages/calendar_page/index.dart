@@ -40,7 +40,7 @@ class CalendarPage extends ConsumerWidget {
               formatButtonVisible: false,
               titleCentered: true,
             ),
-            locale: "mn_MN",
+            locale: 'mn_MN',
             eventLoader: (date) {
               return events.valueOrNull?[date] ?? [];
             },
@@ -55,11 +55,16 @@ class CalendarPage extends ConsumerWidget {
           Expanded(
             child: events.when(
               data: (data) {
+                if (selectedEvents.isEmpty) {
+                  return const Center(
+                    child: Text('EMPTY'),
+                  );
+                }
+
                 return ListView.builder(
                   itemCount: selectedEvents.length,
                   itemBuilder: (_, index) {
                     final job = selectedEvents.elementAt(index);
-
                     return EventItem(data: job);
                   },
                 );
@@ -112,8 +117,13 @@ final fetchJobsProvider = FutureProvider((ref) async {
           0x3FFFFFFF;
     },
   )..addAll({
-      for (var job in jobs)
-        job.date: jobs.where((element) => element.date == job.date).toList()
+      for (final job in jobs)
+        DateTime.utc(job.bookedStart.year, job.bookedStart.month,
+                job.bookedStart.day):
+            jobs
+                .where((element) =>
+                    DateUtils.isSameDay(element.bookedStart, job.bookedStart))
+                .toList()
     });
 
   return events;
